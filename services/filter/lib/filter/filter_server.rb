@@ -1,5 +1,7 @@
+# coding: utf-8
 this_dir = File.expand_path(File.dirname(__FILE__))
 lib_dir = File.join(this_dir, '../proto')
+$LOAD_PATH.unshift(this_dir) unless $LOAD_PATH.include?(this_dir)
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'grpc'
@@ -7,15 +9,14 @@ require "hiyoco/calendar/event_pb"
 require "hiyoco/filter/service_pb"
 require "hiyoco/filter/service_services_pb"
 require "hiyoco/informant/service_services_pb"
+require "funnel"
 
 class FilterServer < Hiyoco::Filter::Filter::Service
   def say_event(e, _unused_call)
-    stub = Hiyoco::Informant::Informant::Stub.new('0.0.0.0:50051', :this_channel_is_insecure)
-    start_time = Time.at(e.start.date.date.seconds)
-    end_time = Time.at(e.end.date.date.seconds)
-    str = "Summary:#{e.summary}\nDescription:#{e.description}\nStart at #{start_time.strftime("%Y-%m-%d %H:%M")}\nEnd at #{end_time.strftime("%Y-%m-%d %H:%M")}\n"
-    message = stub.say_event(Hiyoco::Calendar::Text.new(body: str )).result
-    puts message
+    dsl = ["summary:打合せ", "hide:description", "slack"]
+    funnel = Funnel.new(dsl)
+    #funnel.outlet.apply(e) # for confirm raw event
+    funnel.apply(e)
   end
 end
 
