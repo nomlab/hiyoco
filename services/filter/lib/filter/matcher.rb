@@ -1,8 +1,8 @@
 class Matcher
-  def initialize(dsl)
-    dsl_array = dsl.split(":")
-    @event_item = dsl_array[0]
-    @arg = dsl_array[1]
+  def initialize(query)
+    query_array = query.split(":")
+    @event_item = query_array[0]
+    @arg = query_array[1]
   end
 
   def apply(e)

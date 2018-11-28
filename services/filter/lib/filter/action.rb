@@ -1,8 +1,8 @@
 class Action
-  def initialize(dsl)
-    dsl_array = dsl.split(":")
-    @type = dsl_array[0]
-    @event_item = dsl_array[1]
+  def initialize(query)
+    query_array = query.split(":")
+    @type = query_array[0]
+    @event_item = query_array[1]
   end
 
   def apply(e)

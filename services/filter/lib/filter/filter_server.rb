@@ -13,8 +13,8 @@ require "funnel"
 
 class FilterServer < Hiyoco::Filter::Filter::Service
   def say_event(e, _unused_call)
-    dsl = ["summary:打合せ", "hide:description", "slack"]
-    funnel = Funnel.new(dsl)
+    query = ["summary:打合せ", "hide:description", "slack"]
+    funnel = Funnel.new(query)
     #funnel.outlet.apply(e) # for confirm raw event
     funnel.apply(e)
   end

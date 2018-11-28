@@ -1,8 +1,8 @@
 class Outlet
-  def initialize(dsl)
-    dsl_array = dsl.split(":")
-    @type = dsl_array[0]
-    @dest = dsl_array[1]
+  def initialize(query)
+    query_array = query.split(":")
+    @type = query_array[0]
+    @dest = query_array[1]
   end
 
   def apply(e)
