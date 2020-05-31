@@ -94,3 +94,5 @@ $ ./generate_docs.sh --debug  # Invoke shell prompt in docker container for debu
 
 ### Using Circle CI
 Circle CI は上記の `generate_docs.sh` を利用している．このため，編集された `.proto` ファイルが本リポジトリに push されると，Circle CIが `generate_docs.sh` を実行することによって `hiyoco/docs` 以下にある Markdown ドキュメントが更新される．Circle CI の設定は `config.yml` に記されている．
+
+ドキュメントの publish 先: https://nomlab.github.io/hiyoco/proto/hiyoco/
