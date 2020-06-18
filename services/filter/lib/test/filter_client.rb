@@ -21,8 +21,8 @@ end
 def main
   start_time = Time.new(2018, 8, 6, 13, 30, 0, "+09:00")
   end_time = Time.new(2018, 8, 6, 15, 30, 0, "+09:00")
-  summary = "第160回GN談話会"
-  description = ""
+  summary = "第160回GN検討打合せ"
+  description = "test event"
 
   stub = Hiyoco::Filter::Filter::Stub.new('0.0.0.0:50050', :this_channel_is_insecure)
   ev = Hiyoco::Calendar::Event.new(start: create_date(start_time), end: create_date(end_time), summary: summary, description: description)
